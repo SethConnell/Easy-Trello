@@ -10,6 +10,7 @@ Assuming you have your environment variables set correctly, you should be able t
 
 ## Supported Trello API requests:
 * createBoard
+* deleteBoard
 * createList
 
 ## Required Python Modules:
