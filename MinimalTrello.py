@@ -40,8 +40,8 @@ class Trello(object):
                "prefs_cardCovers":"true",
                "prefs_background":"grey",
                "prefs_cardAging":"regular",
-               "key":key,
-               "token":token}
+               "key":self.key,
+               "token":self.token}
         # This loop checks all arguments in the function, looking if any of the optional ones have been changed.
         for i in defaultLabels, defaultLists, keepFromSource, prefs_permissionLevel, prefs_voting, prefs_comments, prefs_invitations, prefs_selfJoin, prefs_cardCovers, prefs_background, prefs_cardAging:
             # If the argument has been modified, then the default query is updated accordingly.
@@ -53,12 +53,19 @@ class Trello(object):
         jsonresponse = json.loads(response.text)
         return jsonresponse
 
+    # This function deletes the board with the given id.
+    def deleteBoard(self, id):
+        url = self.url + id
+        query = {"key":self.key, "token":self.token}
+        response = requests.request("DELETE", url, params=query)
+        print response.text
+
     # This function creates a new list in a specified board.
     def createList(self, name, idBoard, idListSource=0, pos=0):
         query = {"name": name,
                  "idBoard":idBoard,
-                 "key":key,
-                 "token":token}
+                 "key":self.key,
+                 "token":self.token}
         for i in idListSource, pos:
             if i != 0:
                 query[str(varname(i, locals()))]
