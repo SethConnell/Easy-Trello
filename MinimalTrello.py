@@ -52,3 +52,17 @@ class Trello(object):
         response = requests.request("POST", self.url, params=query)
         jsonresponse = json.loads(response.text)
         return jsonresponse
+
+    # This function creates a new list in a specified board.
+    def createList(self, name, idBoard, idListSource=0, pos=0):
+        query = {"name": name,
+                 "idBoard":idBoard,
+                 "key":key,
+                 "token":token}
+        for i in idListSource, pos:
+            if i != 0:
+                query[str(varname(i, locals()))]
+        response = requests.request("POST", self.url, params=query)
+        jsonresponse = json.loads(response.text)
+        print jsonresponse
+        return jsonresponse
