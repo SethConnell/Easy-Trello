@@ -47,7 +47,7 @@ class Trello(object):
             # If the argument has been modified, then the default query is updated accordingly.
             if i != 0:
                 name = varname(i, locals())
-                query[str(name[0])] == str(i)
+                query[str(name[0])] = str(i)
         # A simple post request to Trello's API, with the response being converted using the json module.
         response = requests.request("POST", self.url, params=query)
         jsonresponse = json.loads(response.text)
@@ -72,4 +72,25 @@ class Trello(object):
         response = requests.request("POST", self.url, params=query)
         jsonresponse = json.loads(response.text)
         print jsonresponse
+        return jsonresponse
+    
+    # This function adds a card to a specified Trello list.
+    def addCard(self, idList, name=0, desc=0, pos=0, due=0, dueComplete=0,):
+        url = "https://api.trello.com/1/cards"
+        query = {"key":self.key,
+                "token":self.token,
+                "idList": idList
+                }
+        # If any of the zero value arguments have been modified, then the default query is updated accordingly.
+        if name != 0:
+            query["name"] = name
+        if desc != 0:
+            query["desc"] = desc
+        if pos != 0:
+            query["due"] = due
+        if dueComplete != 0:
+            query["dueComplete"] = dueComplete
+        # A simple post request to Trello's API, with the response being converted using the json module.
+        response = requests.request("POST", url, params=query)
+        jsonresponse = json.loads(response.text)
         return jsonresponse
