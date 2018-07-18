@@ -12,6 +12,7 @@ Assuming you have your environment variables set correctly, you should be able t
 * createBoard
 * deleteBoard
 * createList
+* addCard
 
 ## Required Python Modules:
 * json
