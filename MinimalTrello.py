@@ -94,3 +94,13 @@ class Trello(object):
         response = requests.request("POST", url, params=query)
         jsonresponse = json.loads(response.text)
         return jsonresponse
+
+    # This function will return True if the token works. Otherwise, it will return False.
+    def checkToken(self, token):
+        url = "https://api.trello.com/1/tokens/" + str(token) + "?token=" + str(self.token) + "&key=" + str(self.key)
+        response = requests.request("GET", url)
+        try:
+            jsonresponse = json.loads(response.text)
+            return True
+        except:
+            return False
