@@ -14,6 +14,9 @@ Assuming you have your environment variables set correctly, you should be able t
 * createList
 * addCard
 
+## Extra features:
+* checkToken
+
 ## Required Python Modules:
 * json
 * requests
